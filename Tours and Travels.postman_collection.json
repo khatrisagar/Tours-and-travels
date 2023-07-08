@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "73f5e6be-969c-4f31-b336-432620fc9a20",
+		"name": "Tours and Travels",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"sagar\",\n    \"email\": \"err@gmail.com\",\n    \"password\": \"1234\",\n    \"contact\":1212121212\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9999/api/auth/sign-up/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9999",
+							"path": [
+								"api",
+								"auth",
+								"sign-up",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add -role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9999/api/auth/add-role/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9999",
+							"path": [
+								"api",
+								"auth",
+								"add-role",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-roles",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "getusrs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9999/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9999",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tours",
+			"item": [
+				{
+					"name": "Get tours",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "add tours",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODgwODkyNCwiZXhwIjoxNjg5NjcyOTI0fQ.S_AvI0LLKGbfPP1u-sG4o_FySmBZ4flO2V_-n2ncFpQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Leh Limelight Experience Tour\",\n    \"startDate\":\"2022-07-07\", \n    \"endDate\": \" 2022-07-08\",\n    \"price\": 20000,\n    \"description\":\"Let's go to ladakh\",\n    \"coverImage\": \"coverimage\",\n    \"images\": [\"image1\",\"image2\"],\n    \"locationsCovered\":[{ \"name\":\"Arrival Leh\", \"details\":\"Arrive at Kushok Bakula airport, Leh situated at 3500m altitude, meet by our representative at the airport and transfer to your hotel in Leh city 3 to 4 km. On arrival, check in at the resort and take full-day at rest to acclimatize yourself completely to the high altitudes of Ladakh which is a must. Overnight stay at Leh.\", \"day\": 1,\"includedMeals\": [\"Lunch\", \"Dinner\"]  }]\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9999/api/tours/add-tours",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9999",
+							"path": [
+								"api",
+								"tours",
+								"add-tours"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update tours",
+					"request": {
+						"method": "PATCH",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete tours",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "book tours",
+					"request": {
+						"method": "PATCH",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
