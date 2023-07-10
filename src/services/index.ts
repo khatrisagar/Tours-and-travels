@@ -10,4 +10,5 @@ export {
   getSingleRoleDb,
 } from "@/services/user/role.service";
 
-export { getToursDb, addToursDb } from "@/services/tour/tour.service";
+export * from "@/services/admin";
+export * from "@/services/user";

@@ -29,11 +29,6 @@ const user = new Schema<userModelInterface>(
   }
 );
 
-// user.virtual("roleInfo", {
-//   ref: "Role",
-//   localField: "roles",
-//   foreignField: "name",
-// });
 user.pre("save", async function (next) {
   this.password = await encryptPassword(this.password);
   next();

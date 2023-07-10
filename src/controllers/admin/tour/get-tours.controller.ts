@@ -1,13 +1,14 @@
 import { apiResponseMessages, httpStatus } from "@/enums";
 import { APIResponse } from "@/utils";
 import { Request, Response } from "express";
-import { createRoleDb, getRolesDb } from "@/services";
+import { getAdminToursDb, getAdminTourByIdDb } from "@/services";
 
-export const addRole = async (req: Request, res: Response) => {
+export const getAdminTours = async (req: Request, res: Response) => {
   try {
-    const role = await createRoleDb(req.body);
-    return new APIResponse(res, httpStatus.CREATED, role).success();
+    const tours = await getAdminToursDb();
+    return new APIResponse(res, httpStatus.OK, tours).success();
   } catch (error) {
+    console.log(error);
     return new APIResponse(
       res,
       httpStatus.INTERNAL_SERVER_ERROR,
@@ -15,10 +16,12 @@ export const addRole = async (req: Request, res: Response) => {
     ).failed();
   }
 };
-export const getRoles = async (req: Request, res: Response) => {
+
+export const getAdminTourById = async (req: Request, res: Response) => {
   try {
-    const roles = await getRolesDb();
-    return new APIResponse(res, httpStatus.OK, roles).success();
+    const tourId = req.params.tourId;
+    const tours = await getAdminTourByIdDb(tourId);
+    return new APIResponse(res, httpStatus.OK, tours).success();
   } catch (error) {
     console.log(error);
     return new APIResponse(

@@ -17,12 +17,18 @@ export const loginUser = async (req: Request, res: Response) => {
         console.log("aaaaaa", user);
         const token = createJWTToken(user._id);
         return new APIResponse(res, httpStatus.OK, token).success();
+      } else {
+        return new APIResponse(
+          res,
+          httpStatus.OK,
+          apiResponseMessages.INVALID_EMAIL_PASSWORD
+        ).failed();
       }
     } else {
       return new APIResponse(
         res,
         httpStatus.OK,
-        apiResponseMessages.USER_NOT_FOUND
+        apiResponseMessages.INVALID_EMAIL_PASSWORD
       ).failed();
     }
   } catch (error) {

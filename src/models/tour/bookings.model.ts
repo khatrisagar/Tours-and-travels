@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const review = new Schema<any>(
+const booking = new Schema<any>(
   {
     user: {
       type: Schema.Types.ObjectId,
@@ -12,17 +12,19 @@ const review = new Schema<any>(
       required: true,
       ref: "Tour",
     },
-    comment: {
+    paymentStatus: {
       type: String,
-      required: false,
-    },
-    rating: {
-      type: Number,
       required: true,
-      enum: [1, 2, 3, 4, 5],
+      default: "pending",
+      enum: ["completed", "pending"],
+    },
+    paymentType: {
+      type: String,
+      required: true,
+      enum: ["cash", "online"],
     },
   },
-  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
+  { timestamps: true }
 );
 
-export const Review = model("Review", review);
+export const Booking = model("Booking", booking);

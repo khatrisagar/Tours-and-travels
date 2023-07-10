@@ -23,19 +23,15 @@ export const getRolesDb = async () => {
     throw new Error((error as Error).message);
   }
 };
-export const getSingleRoleDb = async (roles: Array<ObjectId>, name: string) => {
+export const getSingleRoleDb = async (roles: Array<ObjectId>) => {
   try {
     const role = await Role.find().where({
       $and: [
         {
           _id: { $in: roles },
         },
-        {
-          name: name,
-        },
       ],
     });
-    console.log(role);
     return role;
   } catch (error) {
     throw new Error((error as Error).message);
