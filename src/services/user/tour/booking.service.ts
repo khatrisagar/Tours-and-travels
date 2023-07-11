@@ -1,5 +1,8 @@
+import { getTourById } from "@/controllers";
+import { bookingInterface, bookingModelInterface } from "@/interfaces";
 import { Booking } from "@/models";
 import { ObjectId } from "mongoose";
+import { getTourByIdDb } from "./tour.service";
 
 export const getBookingsDb = async (userId: ObjectId, tourId?: ObjectId) => {
   try {
@@ -17,7 +20,7 @@ export const getBookingsDb = async (userId: ObjectId, tourId?: ObjectId) => {
     throw new Error((error as Error).message);
   }
 };
-export const bookTourDb = async (bookingInfo: any) => {
+export const bookTourDb = async (bookingInfo: bookingInterface) => {
   try {
     const tours = await Booking.create(bookingInfo);
     return tours;

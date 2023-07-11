@@ -3,23 +3,31 @@ import { Request, Response, NextFunction } from "express";
 
 import { httpStatus, apiResponseMessages } from "enums";
 import { getSingleRoleDb } from "@/services";
+import { roleModelInterface, userRequestPayload } from "@/interfaces";
 
-export const routeProtection = (permissions: any) => {
+export const routeProtection = (permissions: Array<string>) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const getUserRole: any = await getSingleRoleDb((req as any).user.roles);
-      const roles: Array<string> = getUserRole.map((role: any) => role.name);
-      (req as Request & { roles: any }).roles = roles;
+      const getUserRole: Array<roleModelInterface> = await getSingleRoleDb(
+        (req as Request & { user: userRequestPayload }).user.roles
+      );
+      console.log("getUserRole", getUserRole);
+      const roles: Array<string> = getUserRole.map(
+        (role: roleModelInterface) => role.name
+      );
+      (req as Request & { roles: Array<String> }).roles = roles;
       if (getUserRole.length) {
-        const isUserHavePermissions = getUserRole.map((role: any) => {
-          return permissions.every((permission: Array<string>) => {
-            if (role.permissions.includes(permission)) {
-              return true;
-            } else {
-              return false;
-            }
-          });
-        });
+        const isUserHavePermissions = getUserRole.map(
+          (role: roleModelInterface) => {
+            return permissions.every((permission: string) => {
+              if (role.permissions.includes(permission)) {
+                return true;
+              } else {
+                return false;
+              }
+            });
+          }
+        );
         if (isUserHavePermissions.includes(true)) {
           return next();
         } else {

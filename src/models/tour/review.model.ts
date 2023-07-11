@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
+import { reviewModelInterface } from "@/interfaces";
 
-const review = new Schema<any>(
+const review = new Schema<reviewModelInterface>(
   {
     user: {
       type: Schema.Types.ObjectId,
@@ -25,4 +26,4 @@ const review = new Schema<any>(
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
-export const Review = model("Review", review);
+export const Review = model<reviewModelInterface>("Review", review);

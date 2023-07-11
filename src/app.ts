@@ -11,7 +11,6 @@ app.use(express.json());
 
 import {
   authRoutes,
-  userRoutes,
   adminTourRoutes,
   userTourRoutes,
   userBookingRoutes,
@@ -21,7 +20,6 @@ import {
 app.use("/api/auth", authRoutes);
 
 // user routes
-app.use("/api/user", userRoutes);
 
 // admin tour routes
 app.use("/api/admin/tours", adminTourRoutes);

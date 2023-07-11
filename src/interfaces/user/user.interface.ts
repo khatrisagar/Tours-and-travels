@@ -8,8 +8,8 @@ export interface userPayloadInterface {
 
 export interface userModelInterface extends userPayloadInterface {
   _id: ObjectId;
-  contact: Number;
-  roles: Array<ObjectId | string>;
+  contact: number;
+  roles: Array<ObjectId>;
 }
 
 export interface userRequestPayload extends userModelInterface {

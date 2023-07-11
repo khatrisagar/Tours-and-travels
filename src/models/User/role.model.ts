@@ -1,6 +1,7 @@
+import { roleModelInterface } from "@/interfaces";
 import { Schema, model } from "mongoose";
 
-const role = new Schema<any>({
+const role = new Schema<roleModelInterface>({
   name: {
     type: "string",
     required: true,
@@ -12,4 +13,4 @@ const role = new Schema<any>({
   },
 });
 
-export const Role = model("Role", role);
+export const Role = model<roleModelInterface>("Role", role);

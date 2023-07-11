@@ -1,6 +1,7 @@
+import { reviewModelInterface } from "@/interfaces";
 import { Review } from "@/models";
 
-export const addReviewDb = async (reviewPayload: any) => {
+export const addReviewDb = async (reviewPayload: reviewModelInterface) => {
   try {
     const review = await Review.create(reviewPayload);
     return review;

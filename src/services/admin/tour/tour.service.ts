@@ -1,3 +1,4 @@
+import { tourModelInterface } from "@/interfaces";
 import { Tour } from "@/models";
 
 export const getAdminToursDb = async () => {
@@ -18,7 +19,7 @@ export const getAdminTourByIdDb = async (tourId: string) => {
   }
 };
 
-export const addToursDb = async (payload: any) => {
+export const addToursDb = async (payload: tourModelInterface) => {
   try {
     const tours = await Tour.create(payload);
     return tours;
@@ -27,7 +28,10 @@ export const addToursDb = async (payload: any) => {
   }
 };
 
-export const updateToursDb = async (tourId: string, tourPayload: any) => {
+export const updateToursDb = async (
+  tourId: string,
+  tourPayload: tourModelInterface
+) => {
   try {
     const tour = await Tour.findByIdAndUpdate(tourId, tourPayload, {
       new: true,

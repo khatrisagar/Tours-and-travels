@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"sagar\",\n    \"email\": \"sagar@gmail.com\",\n    \"password\": \"1234\",\n    \"contact\":1212121212\n}",
+							"raw": "{\n    \"name\":\"user2\",\n    \"email\": \"user2@gmail.com\",\n    \"password\": \"1234\",\n    \"contact\":1212121212\n}\n// {\n//     \"name\":\"admin\",\n//     \"email\": \"admin@gmail.com\",\n//     \"password\": \"1234\",\n//     \"contact\":1212121212\n// }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -46,13 +46,21 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODgwODkyNCwiZXhwIjoxNjg5NjcyOTI0fQ.S_AvI0LLKGbfPP1u-sG4o_FySmBZ4flO2V_-n2ncFpQ",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
+								"description": "user",
 								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Y0YzIyZDJjMmJmYjZmNzdmYyIsImlhdCI6MTY4OTA1MjM1MSwiZXhwIjoxNjg5OTE2MzUxfQ.aksZzBbzFDUKdZtVwH10jnkPxr1MZFGbDKLCnBE1-rQ",
+								"description": "admin",
+								"type": "default",
+								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"TEST\"\n}",
+							"raw": "{\n    \"name\":\"Test\",\n    \"permissions\":[\"aaa\"]\n\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -83,14 +91,16 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODgwODkyNCwiZXhwIjoxNjg5NjcyOTI0fQ.S_AvI0LLKGbfPP1u-sG4o_FySmBZ4flO2V_-n2ncFpQ",
-								"type": "default"
-							},
-							{
-								"key": "",
-								"value": "",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
+								"description": "user",
 								"type": "default",
 								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Y0YzIyZDJjMmJmYjZmNzdmYyIsImlhdCI6MTY4OTA1MjM1MSwiZXhwIjoxNjg5OTE2MzUxfQ.aksZzBbzFDUKdZtVwH10jnkPxr1MZFGbDKLCnBE1-rQ",
+								"description": "admin",
+								"type": "default"
 							}
 						],
 						"url": {
@@ -117,7 +127,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"sasaaa@gmail.com\",\n    \"password\": \"1234\"\n}",
+							"raw": "{\n    \"email\": \"user1@gmail.com\",\n    \"password\": \"1234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -156,8 +166,16 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODgwODkyNCwiZXhwIjoxNjg5NjcyOTI0fQ.S_AvI0LLKGbfPP1u-sG4o_FySmBZ4flO2V_-n2ncFpQ",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
+										"description": "user",
 										"type": "default"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Y0YzIyZDJjMmJmYjZmNzdmYyIsImlhdCI6MTY4OTA1MjM1MSwiZXhwIjoxNjg5OTE2MzUxfQ.aksZzBbzFDUKdZtVwH10jnkPxr1MZFGbDKLCnBE1-rQ",
+										"description": "admin",
+										"type": "default",
+										"disabled": true
 									}
 								],
 								"url": {
@@ -182,12 +200,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODgwODkyNCwiZXhwIjoxNjg5NjcyOTI0fQ.S_AvI0LLKGbfPP1u-sG4o_FySmBZ4flO2V_-n2ncFpQ",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
+										"description": "user",
 										"type": "default"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:9999/api/tours/64ab83a784518b5930a42b79",
+									"raw": "http://localhost:9999/api/tours/64acea0573965c1ea527a31e",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -196,7 +215,7 @@
 									"path": [
 										"api",
 										"tours",
-										"64ab83a784518b5930a42b79"
+										"64acea0573965c1ea527a31e"
 									]
 								}
 							},
@@ -214,16 +233,16 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODgwODkyNCwiZXhwIjoxNjg5NjcyOTI0fQ.S_AvI0LLKGbfPP1u-sG4o_FySmBZ4flO2V_-n2ncFpQ",
-										"description": "admin",
-										"type": "default"
-									},
-									{
-										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWJjNTg2MjI3ZjllMTU0NGJiZTIwZCIsImlhdCI6MTY4ODk3ODk3OSwiZXhwIjoxNjg5ODQyOTc5fQ.NaUZ3aGYMpKezUKI-WEEZS3DqAvaE3OFnXHvpASIdsk",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
 										"description": "user",
 										"type": "default",
 										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlYTRmNzM5NjVjMWVhNTI3YTMyNiIsImlhdCI6MTY4OTA1NDA0OCwiZXhwIjoxNjg5OTE4MDQ4fQ.Y7wVbj_qwDpX9qPIEKnfIaiWLgpHV-yWxipoyBpQpZk",
+										"description": "user1",
+										"type": "default"
 									}
 								],
 								"url": {
@@ -249,13 +268,14 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODgwODkyNCwiZXhwIjoxNjg5NjcyOTI0fQ.S_AvI0LLKGbfPP1u-sG4o_FySmBZ4flO2V_-n2ncFpQ",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
+										"description": "user",
 										"type": "default"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"tour\": \"64ab83a784518b5930a42b79\", \n    \"paymentStatus\": \"completed\",\n    \"paymentType\": \"online\"\n}",
+									"raw": "{\n    \"tour\": \"64acea0573965c1ea527a31e\", \n    \"paymentStatus\": \"completed\",\n    \"paymentType\": \"online\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -289,21 +309,21 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODgwODkyNCwiZXhwIjoxNjg5NjcyOTI0fQ.S_AvI0LLKGbfPP1u-sG4o_FySmBZ4flO2V_-n2ncFpQ",
-										"description": "admin",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
+										"description": "user",
 										"type": "default",
 										"disabled": true
 									},
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWJjNTg2MjI3ZjllMTU0NGJiZTIwZCIsImlhdCI6MTY4ODk3ODk3OSwiZXhwIjoxNjg5ODQyOTc5fQ.NaUZ3aGYMpKezUKI-WEEZS3DqAvaE3OFnXHvpASIdsk",
-										"description": "User",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlYTRmNzM5NjVjMWVhNTI3YTMyNiIsImlhdCI6MTY4OTA1NDA0OCwiZXhwIjoxNjg5OTE4MDQ4fQ.Y7wVbj_qwDpX9qPIEKnfIaiWLgpHV-yWxipoyBpQpZk",
+										"description": "User1",
 										"type": "default"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"tour\": \"64ab83a784518b5930a42b79\",\n    \"comment\": \"Amazing Tour\",\n    \"rating\": \"5\"\n}",
+									"raw": "{\n    \"tour\": \"64acea0573965c1ea527a31e\",\n    \"comment\": \"Amazing Tour\",\n    \"rating\": \"5\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -333,7 +353,14 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODgwODkyNCwiZXhwIjoxNjg5NjcyOTI0fQ.S_AvI0LLKGbfPP1u-sG4o_FySmBZ4flO2V_-n2ncFpQ",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
+										"description": "User",
+										"type": "default"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlYTRmNzM5NjVjMWVhNTI3YTMyNiIsImlhdCI6MTY4OTA1NDA0OCwiZXhwIjoxNjg5OTE4MDQ4fQ.Y7wVbj_qwDpX9qPIEKnfIaiWLgpHV-yWxipoyBpQpZk",
+										"description": "User1",
 										"type": "default"
 									}
 								],
@@ -354,26 +381,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "getusers",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:9999/api/user",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9999",
-							"path": [
-								"api",
-								"user"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -390,8 +397,16 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODgwODkyNCwiZXhwIjoxNjg5NjcyOTI0fQ.S_AvI0LLKGbfPP1u-sG4o_FySmBZ4flO2V_-n2ncFpQ",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
+										"description": "user",
 										"type": "default"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Y0YzIyZDJjMmJmYjZmNzdmYyIsImlhdCI6MTY4OTA1MjM1MSwiZXhwIjoxNjg5OTE2MzUxfQ.aksZzBbzFDUKdZtVwH10jnkPxr1MZFGbDKLCnBE1-rQ",
+										"description": "Admin",
+										"type": "default",
+										"disabled": true
 									}
 								],
 								"url": {
@@ -446,9 +461,16 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWJjNTg2MjI3ZjllMTU0NGJiZTIwZCIsImlhdCI6MTY4ODk3ODk3OSwiZXhwIjoxNjg5ODQyOTc5fQ.NaUZ3aGYMpKezUKI-WEEZS3DqAvaE3OFnXHvpASIdsk",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Y0YzIyZDJjMmJmYjZmNzdmYyIsImlhdCI6MTY4OTA1MjM1MSwiZXhwIjoxNjg5OTE2MzUxfQ.aksZzBbzFDUKdZtVwH10jnkPxr1MZFGbDKLCnBE1-rQ",
+										"description": "Admin",
 										"type": "default",
 										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
+										"description": "User",
+										"type": "default"
 									}
 								],
 								"body": {
@@ -484,21 +506,21 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODk3OTA4MywiZXhwIjoxNjg5ODQzMDgzfQ.Bs_zaiku8WB2LRb5IzbCVDBZ6N1pi_trsuXX26MdJJU",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Y0YzIyZDJjMmJmYjZmNzdmYyIsImlhdCI6MTY4OTA1MjM1MSwiZXhwIjoxNjg5OTE2MzUxfQ.aksZzBbzFDUKdZtVwH10jnkPxr1MZFGbDKLCnBE1-rQ",
 										"description": "admin",
 										"type": "default",
 										"disabled": true
 									},
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWJjNTg2MjI3ZjllMTU0NGJiZTIwZCIsImlhdCI6MTY4ODk3ODk3OSwiZXhwIjoxNjg5ODQyOTc5fQ.NaUZ3aGYMpKezUKI-WEEZS3DqAvaE3OFnXHvpASIdsk",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
 										"description": "user",
 										"type": "default"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"Leh Limelight Experience Tour\",\n    \"startDate\":\"2022-07-07\", \n    \"endDate\": \" 2022-07-08\",\n    \"price\": 30000,\n    \"description\":\"Let's go to ladakh\",\n    \"coverImage\": \"coverimage\",\n    \"images\": [\"image1\",\"image2\"],\n    \"locationsCovered\":[{ \"name\":\"Arrival Leh\", \"details\":\"Arrive at Kushok Bakula airport, Leh situated at 3500m altitude, meet by our representative at the airport and transfer to your hotel in Leh city 3 to 4 km. On arrival, check in at the resort and take full-day at rest to acclimatize yourself completely to the high altitudes of Ladakh which is a must. Overnight stay at Leh.\", \"day\": 1,\"includedMeals\": [\"Lunch\", \"Dinner\"]  }]\n}",
+									"raw": "{\n    \"name\": \"Leh Limelight Experience Tour\",\n    \"startDate\":\"2022-07-07\", \n    \"endDate\": \" 2022-07-08\",\n    \"price\": 40000,\n    \"description\":\"Let's go to ladakh\",\n    \"coverImage\": \"coverimage\",\n    \"images\": [\"image1\",\"image2\"],\n    \"locationsCovered\":[{ \"name\":\"Arrival Leh\", \"details\":\"Arrive at Kushok Bakula airport, Leh situated at 3500m altitude, meet by our representative at the airport and transfer to your hotel in Leh city 3 to 4 km. On arrival, check in at the resort and take full-day at rest to acclimatize yourself completely to the high altitudes of Ladakh which is a must. Overnight stay at Leh.\", \"day\": 1,\"includedMeals\": [\"Lunch\", \"Dinner\"]  }]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -506,7 +528,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:9999/api/admin/tours/64abbb9522b2d35b25f3b443",
+									"raw": "http://localhost:9999/api/admin/tours/64acea0573965c1ea527a31e",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -516,7 +538,7 @@
 										"api",
 										"admin",
 										"tours",
-										"64abbb9522b2d35b25f3b443"
+										"64acea0573965c1ea527a31e"
 									]
 								}
 							},
@@ -529,12 +551,20 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkyZGQyYTYxMjA5NGYyZGYzMjY2NCIsImlhdCI6MTY4ODgwODkyNCwiZXhwIjoxNjg5NjcyOTI0fQ.S_AvI0LLKGbfPP1u-sG4o_FySmBZ4flO2V_-n2ncFpQ",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Y0YzIyZDJjMmJmYjZmNzdmYyIsImlhdCI6MTY4OTA1MjM1MSwiZXhwIjoxNjg5OTE2MzUxfQ.aksZzBbzFDUKdZtVwH10jnkPxr1MZFGbDKLCnBE1-rQ",
+										"description": "admin",
+										"type": "default",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWNlM2Q4YzIyZDJjMmJmYjZmNzdmOSIsImlhdCI6MTY4OTA1MjI5MiwiZXhwIjoxNjg5OTE2MjkyfQ.b1sPWvqy_IOPKnTO-_rVtm1XY3INbCvnakOzgBIYdjw",
+										"description": "user",
 										"type": "default"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:9999/api/admin/tours/64aba0ac42b995223a3c6b82",
+									"raw": "http://localhost:9999/api/admin/tours/64acea0573965c1ea527a31e",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -544,7 +574,7 @@
 										"api",
 										"admin",
 										"tours",
-										"64aba0ac42b995223a3c6b82"
+										"64acea0573965c1ea527a31e"
 									]
 								}
 							},

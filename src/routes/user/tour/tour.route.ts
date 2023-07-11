@@ -6,7 +6,7 @@ import { authenticate, routeProtection } from "@/middlewares";
 
 import { getTours, getTourById, bookTour } from "@/controllers";
 
-router.get("/", authenticate, routeProtection(["viewAllTours"]), getTours);
+router.get("/", authenticate, routeProtection(["viewTours"]), getTours);
 router.get(
   "/:tourId",
   authenticate,

@@ -21,7 +21,7 @@ const user = new Schema<userModelInterface>(
     },
     roles: {
       type: [Schema.Types.ObjectId],
-      default: ["64a9099f92270a3ab23bb766"],
+      default: [Object("64a9099f92270a3ab23bb766")],
     },
   },
   {
@@ -34,4 +34,4 @@ user.pre("save", async function (next) {
   next();
 });
 
-export const User = model("User", user);
+export const User = model<userModelInterface>("User", user);

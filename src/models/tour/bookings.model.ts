@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
+import { bookingModelInterface } from "@/interfaces";
 
-const booking = new Schema<any>(
+const booking = new Schema<bookingModelInterface>(
   {
     user: {
       type: Schema.Types.ObjectId,
@@ -27,4 +28,4 @@ const booking = new Schema<any>(
   { timestamps: true }
 );
 
-export const Booking = model("Booking", booking);
+export const Booking = model<bookingModelInterface>("Booking", booking);

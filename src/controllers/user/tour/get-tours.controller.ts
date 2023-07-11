@@ -21,7 +21,15 @@ export const getTourById = async (req: Request, res: Response) => {
   try {
     const tourId = req.params.tourId;
     const tours = await getTourByIdDb(tourId);
-    return new APIResponse(res, httpStatus.OK, tours).success();
+    if (tours) {
+      return new APIResponse(res, httpStatus.OK, tours).success();
+    } else {
+      return new APIResponse(
+        res,
+        httpStatus.RESOURCE_NOT_FOUND,
+        apiResponseMessages.TOUR_NOT_FOUND
+      ).failed();
+    }
   } catch (error) {
     console.log(error);
     return new APIResponse(

@@ -1,6 +1,7 @@
+import { reviewModelInterface, tourModelInterface } from "@/interfaces";
 import { Schema, model } from "mongoose";
 
-const tour = new Schema<any>(
+const tour = new Schema<tourModelInterface>(
   {
     name: {
       type: String,
@@ -13,11 +14,6 @@ const tour = new Schema<any>(
     endDate: {
       type: Date,
       required: [true, "Date is required"],
-    },
-    ratings: {
-      type: [Schema.Types.ObjectId],
-      ref: "Rating",
-      default: [],
     },
     price: {
       type: Number,
@@ -64,13 +60,16 @@ tour.virtual("reviews", {
 });
 
 tour.virtual("avgRating").get(function () {
-  let ratings: any = [];
-  if (this.reviews) {
-    this.reviews.forEach((review: any) => ratings.push(review.rating));
-    return (ratings.reduce((a: any, b: any) => a + b) / ratings.length).toFixed(
-      1
+  let ratings: Array<number> = [];
+  if (this.reviews.length) {
+    console.log("s", this.reviews);
+    this.reviews.forEach((review: reviewModelInterface) =>
+      ratings.push(review.rating)
     );
+    return (
+      ratings?.reduce((a: number, b: number) => a + b) / ratings.length
+    ).toFixed(1);
   }
 });
 
-export const Tour = model("Tour", tour);
+export const Tour = model<tourModelInterface>("Tour", tour);

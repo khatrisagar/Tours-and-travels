@@ -6,6 +6,7 @@ import {
   updateToursDb,
   deleteToursDb,
   getTourByIdDb,
+  getAdminTourByIdDb,
 } from "@/services";
 import { userRequestPayload } from "@/interfaces";
 
@@ -45,7 +46,8 @@ export const updateTours = async (req: Request, res: Response) => {
 export const deleteTours = async (req: Request, res: Response) => {
   try {
     const tourId = req.params.tourId;
-    const isTourExist = await getTourByIdDb(tourId);
+    const isTourExist = await getAdminTourByIdDb(tourId);
+    console.log("isTourExist", isTourExist);
     if (isTourExist) {
       await deleteToursDb(tourId);
       return new APIResponse(

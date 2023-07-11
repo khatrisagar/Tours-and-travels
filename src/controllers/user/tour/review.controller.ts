@@ -1,4 +1,5 @@
 import { apiResponseMessages, httpStatus } from "@/enums";
+import { userRequestPayload } from "@/interfaces";
 import { addReviewDb, getBookingsDb, getReviewDb } from "@/services";
 import { APIResponse } from "@/utils";
 import { Request, Response } from "express";
@@ -19,13 +20,13 @@ export const getReviews = async (req: Request, res: Response) => {
 export const addReviews = async (req: Request, res: Response) => {
   try {
     const isPartOfTour = await getBookingsDb(
-      (req as any).user._id,
+      (req as Request & { user: userRequestPayload }).user._id,
       req.body.tour
     );
     if (isPartOfTour.length) {
       const tours = await addReviewDb({
         ...req.body,
-        user: (req as any).user._id,
+        user: (req as Request & { user: userRequestPayload }).user._id,
       });
       return new APIResponse(res, httpStatus.CREATED, tours).success();
     } else {

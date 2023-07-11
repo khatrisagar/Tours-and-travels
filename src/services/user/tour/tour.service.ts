@@ -1,4 +1,5 @@
 import { Tour } from "@/models";
+import { ObjectId } from "mongoose";
 
 export const getToursDb = async () => {
   try {
@@ -9,7 +10,7 @@ export const getToursDb = async () => {
   }
 };
 
-export const getTourByIdDb = async (tourId: string) => {
+export const getTourByIdDb = async (tourId: string | ObjectId) => {
   try {
     const tour = await Tour.findById(tourId)
       .where({ isTourActive: true })
