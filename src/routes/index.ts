@@ -1,5 +1,5 @@
 export { authRoutes } from "@/routes/auth/auth.route";
-export { adminTourRoutes } from "@/routes/admin/";
+export { adminTourRoutes, adminBookingRoutes } from "@/routes/admin/";
 export {
   userTourRoutes,
   userBookingRoutes,

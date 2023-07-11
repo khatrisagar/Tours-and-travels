@@ -15,6 +15,7 @@ import {
   userTourRoutes,
   userBookingRoutes,
   userReviewRoutes,
+  adminBookingRoutes,
 } from "@/routes";
 // auth route
 app.use("/api/auth", authRoutes);
@@ -28,7 +29,7 @@ app.use("/api/admin/tours", adminTourRoutes);
 app.use("/api/tours", userTourRoutes);
 
 // admin bookings
-
+app.use("/api/admin/bookings", adminBookingRoutes);
 // user bookings
 app.use("/api/bookings", userBookingRoutes);
 // user review router

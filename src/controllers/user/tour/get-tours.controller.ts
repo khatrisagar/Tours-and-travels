@@ -31,7 +31,6 @@ export const getTourById = async (req: Request, res: Response) => {
       ).failed();
     }
   } catch (error) {
-    console.log(error);
     return new APIResponse(
       res,
       httpStatus.INTERNAL_SERVER_ERROR,

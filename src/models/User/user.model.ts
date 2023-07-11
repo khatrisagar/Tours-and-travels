@@ -15,6 +15,7 @@ const user = new Schema<userModelInterface>(
     password: {
       type: "string",
       required: true,
+      select: false,
     },
     contact: {
       type: Number,

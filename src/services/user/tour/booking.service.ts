@@ -10,20 +10,19 @@ export const getBookingsDb = async (userId: ObjectId, tourId?: ObjectId) => {
     if (tourId) {
       getCondition["tour"] = tourId;
     }
-    const tours = await Booking.find({
+    const myBooking = await Booking.find({
       ...getCondition,
     });
 
-    console.log(tours);
-    return tours;
+    return myBooking;
   } catch (error) {
     throw new Error((error as Error).message);
   }
 };
 export const bookTourDb = async (bookingInfo: bookingInterface) => {
   try {
-    const tours = await Booking.create(bookingInfo);
-    return tours;
+    const bookTour = await Booking.create(bookingInfo);
+    return bookTour;
   } catch (error) {
     throw new Error((error as Error).message);
   }

@@ -4,7 +4,7 @@ import { ObjectId } from "mongoose";
 
 export const findUserDb = async (email: string) => {
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
     return user;
   } catch (error) {
     throw new Error((error as Error).message);
