@@ -22,7 +22,7 @@ export const signUpUser = async (req: Request, res: Response) => {
   } catch (error) {
     return new APIResponse(
       res,
-      httpStatus.OK,
+      httpStatus.INTERNAL_SERVER_ERROR,
       apiResponseMessages.SOMETHING_WENT_WRONG
     ).failed();
   }

@@ -6,6 +6,8 @@ import { connectDB } from "@/config";
 connectDB();
 
 const PORT = process.env.PORT || 9999;
+import cors from "cors";
+app.use(cors());
 
 app.use(express.json());
 
@@ -17,6 +19,7 @@ import {
   userReviewRoutes,
   adminBookingRoutes,
 } from "@/routes";
+
 // auth route
 app.use("/api/auth", authRoutes);
 
