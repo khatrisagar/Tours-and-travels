@@ -47,7 +47,6 @@ export const getbookingTour = async (req: Request, res: Response) => {
     );
     return new APIResponse(res, httpStatus.OK, bookings).success();
   } catch (error) {
-    console.log(error);
     return new APIResponse(
       res,
       httpStatus.INTERNAL_SERVER_ERROR,

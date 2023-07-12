@@ -3,11 +3,11 @@ import { Schema, model } from "mongoose";
 
 const role = new Schema<roleModelInterface>({
   name: {
-    type: "string",
+    type: String,
     required: true,
   },
   permissions: {
-    type: ["string"],
+    type: [String],
     required: true,
     default: ["view-tour"],
   },

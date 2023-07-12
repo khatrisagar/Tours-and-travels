@@ -16,9 +16,8 @@ export const addTours = async (req: Request, res: Response) => {
       ...req.body,
       organizer: (req as Request & { user: userRequestPayload }).user._id,
     });
-    return new APIResponse(res, httpStatus.OK, tours).success();
+    return new APIResponse(res, httpStatus.CREATED, tours).success();
   } catch (error) {
-    console.log(error);
     return new APIResponse(
       res,
       httpStatus.INTERNAL_SERVER_ERROR,
@@ -47,7 +46,6 @@ export const deleteTours = async (req: Request, res: Response) => {
   try {
     const tourId = req.params.tourId;
     const isTourExist = await getAdminTourByIdDb(tourId);
-    console.log("isTourExist", isTourExist);
     if (isTourExist) {
       await deleteToursDb(tourId);
       return new APIResponse(

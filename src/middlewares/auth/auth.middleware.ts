@@ -17,7 +17,6 @@ export const authenticate = async (
       if (user) {
         return next();
       } else {
-        console.log("aaaaa");
         return new APIResponse(
           res,
           httpStatus.UNAUTHORIZED,

@@ -62,7 +62,6 @@ tour.virtual("reviews", {
 tour.virtual("avgRating").get(function () {
   let ratings: Array<number> = [];
   if (this.reviews.length) {
-    console.log("s", this.reviews);
     this.reviews.forEach((review: reviewModelInterface) =>
       ratings.push(review.rating)
     );

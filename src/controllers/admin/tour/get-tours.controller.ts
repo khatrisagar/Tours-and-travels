@@ -8,7 +8,6 @@ export const getAdminTours = async (req: Request, res: Response) => {
     const tours = await getAdminToursDb();
     return new APIResponse(res, httpStatus.OK, tours).success();
   } catch (error) {
-    console.log(error);
     return new APIResponse(
       res,
       httpStatus.INTERNAL_SERVER_ERROR,
@@ -23,7 +22,6 @@ export const getAdminTourById = async (req: Request, res: Response) => {
     const tours = await getAdminTourByIdDb(tourId);
     return new APIResponse(res, httpStatus.OK, tours).success();
   } catch (error) {
-    console.log(error);
     return new APIResponse(
       res,
       httpStatus.INTERNAL_SERVER_ERROR,

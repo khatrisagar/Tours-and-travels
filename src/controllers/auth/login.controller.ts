@@ -14,7 +14,6 @@ export const loginUser = async (req: Request, res: Response) => {
         user?.password.toString()
       );
       if (isRightPassword) {
-        console.log("aaaaaa", user);
         const token = createJWTToken(user._id);
         return new APIResponse(res, httpStatus.OK, token).success();
       } else {

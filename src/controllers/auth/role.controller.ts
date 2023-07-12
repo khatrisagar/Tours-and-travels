@@ -20,7 +20,6 @@ export const getRoles = async (req: Request, res: Response) => {
     const roles = await getRolesDb();
     return new APIResponse(res, httpStatus.OK, roles).success();
   } catch (error) {
-    console.log("error", error);
     return new APIResponse(
       res,
       httpStatus.INTERNAL_SERVER_ERROR,

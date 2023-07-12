@@ -11,7 +11,6 @@ export const routeProtection = (permissions: Array<string>) => {
       const getUserRole: Array<roleModelInterface> = await getSingleRoleDb(
         (req as Request & { user: userRequestPayload }).user.roles
       );
-      console.log("getUserRole", getUserRole);
       const roles: Array<string> = getUserRole.map(
         (role: roleModelInterface) => role.name
       );

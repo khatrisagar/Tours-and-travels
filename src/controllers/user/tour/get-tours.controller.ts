@@ -8,7 +8,6 @@ export const getTours = async (req: Request, res: Response) => {
     const tours = await getToursDb();
     return new APIResponse(res, httpStatus.OK, tours).success();
   } catch (error) {
-    console.log(error);
     return new APIResponse(
       res,
       httpStatus.INTERNAL_SERVER_ERROR,

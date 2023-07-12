@@ -6,9 +6,7 @@ import { Request, Response } from "express";
 export const signUpUser = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
-    console.log(req.body);
     const isUserExist = await findUserDb(email);
-    console.log(isUserExist);
     if (!isUserExist) {
       const user = await signUpUserDb({
         ...req.body,
@@ -22,7 +20,6 @@ export const signUpUser = async (req: Request, res: Response) => {
       ).failed();
     }
   } catch (error) {
-    console.log(error);
     return new APIResponse(
       res,
       httpStatus.OK,
