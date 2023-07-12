@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { findByIdUserDb } from "@/services";
 import { ObjectId } from "mongoose";
 import { httpStatus, apiResponseMessages } from "enums";
+import { userRequestPayload } from "@/interfaces";
 
 export const authenticate = async (
   req: Request,
@@ -13,7 +14,7 @@ export const authenticate = async (
     if (req.headers.authorization) {
       const decode: any = verifyToken(req.headers.authorization);
       const user: any = await findByIdUserDb(decode.id as ObjectId);
-      (req as Request & { user: object }).user = user;
+      (req as Request & { user: userRequestPayload }).user = user;
       if (user) {
         return next();
       } else {

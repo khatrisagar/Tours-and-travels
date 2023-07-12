@@ -1,10 +1,35 @@
+import { apiFeatureQuerystringInterface } from "@/interfaces";
 import { Tour } from "@/models";
+import { APIFeature } from "@/utils";
 import { ObjectId } from "mongoose";
 
-export const getToursDb = async () => {
+export const getToursDb = async (
+  queryString: apiFeatureQuerystringInterface
+) => {
   try {
-    const tours = await Tour.find({ isTourActive: true });
-    return tours;
+    const allowedSearchFields: any = [
+      {
+        field: "name",
+        type: "string",
+      },
+      { field: "price", type: "number" },
+    ];
+    const tourFeatures = new APIFeature(
+      Tour.find({ isTourActive: true }),
+      queryString
+    )
+      .sort()
+      .filter(allowedSearchFields);
+    const count = await tourFeatures.query.clone().count();
+    const toursInfo = await tourFeatures.pagination().query;
+    const pagination = {
+      itemCount: toursInfo.length,
+      count,
+      page: tourFeatures.page,
+      limit: tourFeatures.limit,
+      skip: tourFeatures.skip,
+    };
+    return { toursInfo, pagination };
   } catch (error) {
     throw new Error((error as Error).message);
   }

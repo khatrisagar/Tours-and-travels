@@ -14,3 +14,8 @@ export {
   roleModelInterface,
   roleInterface,
 } from "@/interfaces/user/role.interface";
+
+export {
+  apiFeatureQuerystringInterface,
+  paginationInterface,
+} from "@/interfaces/common/common.interface";

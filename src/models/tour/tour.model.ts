@@ -41,7 +41,7 @@ const tour = new Schema<tourModelInterface>(
         includedMeals: {
           type: [String],
           required: true,
-          enum: ["Break Fast", "Lunch", "Dinner"],
+          enum: ["Breakfast", "Lunch", "Dinner"],
         },
       },
     ],
@@ -53,6 +53,9 @@ const tour = new Schema<tourModelInterface>(
   }
 );
 
+tour.index({ name: 1 });
+tour.index({ price: 1 });
+
 tour.virtual("reviews", {
   ref: "Review",
   localField: "_id",
@@ -61,7 +64,7 @@ tour.virtual("reviews", {
 
 tour.virtual("avgRating").get(function () {
   let ratings: Array<number> = [];
-  if (this.reviews.length) {
+  if (this.reviews?.length) {
     this.reviews.forEach((review: reviewModelInterface) =>
       ratings.push(review.rating)
     );

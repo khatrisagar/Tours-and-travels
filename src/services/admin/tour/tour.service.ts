@@ -1,10 +1,34 @@
-import { tourModelInterface } from "@/interfaces";
+import {
+  apiFeatureQuerystringInterface,
+  tourModelInterface,
+} from "@/interfaces";
 import { Tour } from "@/models";
+import { APIFeature } from "@/utils";
 
-export const getAdminToursDb = async () => {
+export const getAdminToursDb = async (
+  queryString: apiFeatureQuerystringInterface
+) => {
   try {
-    const tours = await Tour.find();
-    return tours;
+    const allowedSearchFields: any = [
+      {
+        field: "name",
+        type: "string",
+      },
+      { field: "price", type: "number" },
+    ];
+    const tourFeatures = new APIFeature(Tour.find(), queryString)
+      .sort()
+      .filter(allowedSearchFields);
+    const count = await tourFeatures.query.clone().count();
+    const toursInfo = await tourFeatures.pagination().query;
+    const pagination = {
+      itemCount: toursInfo.length,
+      count,
+      page: tourFeatures.page,
+      limit: tourFeatures.limit,
+      skip: tourFeatures.skip,
+    };
+    return { toursInfo, pagination };
   } catch (error) {
     throw new Error((error as Error).message);
   }

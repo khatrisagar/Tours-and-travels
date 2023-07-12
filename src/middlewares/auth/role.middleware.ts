@@ -14,7 +14,7 @@ export const routeProtection = (permissions: Array<string>) => {
       const roles: Array<string> = getUserRole.map(
         (role: roleModelInterface) => role.name
       );
-      (req as Request & { roles: Array<String> }).roles = roles;
+      (req as Request & { roles: Array<string> }).roles = roles;
       if (getUserRole.length) {
         const isUserHavePermissions = getUserRole.map(
           (role: roleModelInterface) => {
