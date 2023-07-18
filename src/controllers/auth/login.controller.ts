@@ -19,14 +19,14 @@ export const loginUser = async (req: Request, res: Response) => {
       } else {
         return new APIResponse(
           res,
-          httpStatus.OK,
+          httpStatus.BAD_REQUEST,
           apiResponseMessages.INVALID_EMAIL_PASSWORD
         ).failed();
       }
     } else {
       return new APIResponse(
         res,
-        httpStatus.OK,
+        httpStatus.BAD_REQUEST,
         apiResponseMessages.INVALID_EMAIL_PASSWORD
       ).failed();
     }
