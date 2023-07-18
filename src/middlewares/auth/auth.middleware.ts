@@ -34,8 +34,8 @@ export const authenticate = async (
   } catch (error) {
     return new APIResponse(
       res,
-      httpStatus.INTERNAL_SERVER_ERROR,
-      apiResponseMessages.SOMETHING_WENT_WRONG
+      httpStatus.UNAUTHORIZED,
+      apiResponseMessages.UNAUTHORIZED
     ).failed();
   }
 };
