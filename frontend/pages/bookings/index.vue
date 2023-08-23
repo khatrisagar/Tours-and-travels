@@ -1,0 +1,1 @@
+<template>Bookings page</template>
