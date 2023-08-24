@@ -1,27 +1,29 @@
 import axios from "axios";
 
-axios.interceptors.request.use(
-  (config) => {
-    if (localStorage.getItem("tnt_at")) {
-      config.headers["Authorization"] = `${localStorage.getItem("tnt_at")}`;
+if (typeof window !== "undefined") {
+  axios.interceptors.request.use(
+    (config) => {
+      if (localStorage.getItem("tnt_at")) {
+        config.headers["Authorization"] = `${localStorage.getItem("tnt_at")}`;
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
     }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+  );
 
-axios.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error?.response?.status === 401) {
-      localStorage.removeItem("auth_token");
-      location.href = "/auth/login";
+  axios.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      if (error?.response?.status === 401) {
+        localStorage.removeItem("auth_token");
+        location.href = "/auth/login";
+      }
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
-  }
-);
+  );
+}
 export const useAxios = () => {
   const runtimeConfig = useRuntimeConfig();
   const axiosGet = (url: string, option = {}) => {

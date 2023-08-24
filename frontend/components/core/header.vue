@@ -31,7 +31,7 @@ export default {
 
 <style scoped>
 .header-wrapper {
-  box-shadow: 0 4px 10px -3px #444444;
+  box-shadow: 0 4px 6px -5px #444444;
   position: relative;
   z-index: 1000;
 }

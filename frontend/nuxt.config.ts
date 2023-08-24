@@ -22,4 +22,5 @@ export default defineNuxtConfig({
       BACKEND_URL: process.env.NUXT_BACKEND_URL,
     },
   },
+  // ssr: false,
 });

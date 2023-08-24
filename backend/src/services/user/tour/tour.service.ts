@@ -15,7 +15,7 @@ export const getToursDb = async (
       { field: "price", type: "number" },
     ];
     const tourFeatures = new APIFeature(
-      Tour.find({ isTourActive: true }),
+      Tour.find({ isTourActive: true }).populate({ path: "reviews" }),
       queryString
     )
       .sort()
@@ -39,7 +39,10 @@ export const getTourByIdDb = async (tourId: string | ObjectId) => {
   try {
     const tour = await Tour.findById(tourId)
       .where({ isTourActive: true })
-      .populate({ path: "reviews" });
+      .populate({
+        path: "reviews",
+        populate: { path: "user", select: "name" },
+      });
     return tour;
   } catch (error) {
     throw new Error((error as Error).message);

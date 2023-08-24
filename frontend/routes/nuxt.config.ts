@@ -16,6 +16,11 @@ export default defineNuxtConfig({
           file: "@/pages/tours/index.vue",
         },
         {
+          name: "tour",
+          path: "/tours/:tourId",
+          file: "@/pages/tours/[tourId].vue",
+        },
+        {
           name: "bookings",
           path: "/bookings",
           file: "@/pages/bookings/index.vue",

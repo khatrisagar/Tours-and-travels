@@ -1,8 +1,8 @@
 <template>
   <div class="touts-home-wrapper">
-    <div class="container card-wrapper">
+    <div class="container card-wrapper" v-if="isLoading">
       <div v-for="tour in toursData" class="outer-container" :key="tour._id">
-        <tour-card :tour="tour" />
+        <tour-card :tour="tour" @click="onClickTour(tour._id)" />
       </div>
     </div>
   </div>
@@ -12,14 +12,24 @@
 export default {
   setup() {
     const { axiosGet } = useAxios();
+    const router = useRouter();
     const toursData = ref(null);
-    (async () => {
+    const isLoading = ref(true);
+
+    onMounted(async () => {
       const tours = await axiosGet("tours");
       toursData.value = tours.data.data;
-      console.log("tours", toursData.value);
-    })();
+      isLoading.value = true;
+    });
+
+    const onClickTour = (tourId: string) => {
+      router.push({ name: "tour", params: { tourId: tourId } });
+    };
+
     return {
       toursData,
+      onClickTour,
+      isLoading,
     };
   },
 };

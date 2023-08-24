@@ -5,6 +5,7 @@
         "fortawesome",
         "nuxtjs",
         "pinia",
+        "Sagar",
         "vuetify",
         "vuex"
     ]

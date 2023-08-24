@@ -61,7 +61,6 @@ tour.virtual("reviews", {
   localField: "_id",
   foreignField: "tour",
 });
-
 tour.virtual("avgRating").get(function () {
   let ratings: Array<number> = [];
   if (this.reviews?.length) {
@@ -71,6 +70,8 @@ tour.virtual("avgRating").get(function () {
     return (
       ratings?.reduce((a: number, b: number) => a + b) / ratings.length
     ).toFixed(1);
+  } else {
+    return 0;
   }
 });
 
