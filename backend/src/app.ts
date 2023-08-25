@@ -18,6 +18,7 @@ import {
   userBookingRoutes,
   userReviewRoutes,
   adminBookingRoutes,
+  profileRoutes,
 } from "@/routes";
 
 // auth route
@@ -37,6 +38,8 @@ app.use("/api/admin/bookings", adminBookingRoutes);
 app.use("/api/bookings", userBookingRoutes);
 // user review router
 app.use("/api/reviews", userReviewRoutes);
+// profile routes
+app.use("/api/profile", profileRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

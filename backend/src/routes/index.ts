@@ -4,4 +4,5 @@ export {
   userTourRoutes,
   userBookingRoutes,
   userReviewRoutes,
+  profileRoutes,
 } from "@/routes/user";

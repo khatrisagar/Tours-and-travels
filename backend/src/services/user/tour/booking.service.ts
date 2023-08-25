@@ -12,7 +12,7 @@ export const getBookingsDb = async (userId: ObjectId, tourId?: ObjectId) => {
     }
     const myBooking = await Booking.find({
       ...getCondition,
-    });
+    }).populate({ path: "tour" });
 
     return myBooking;
   } catch (error) {
@@ -22,7 +22,10 @@ export const getBookingsDb = async (userId: ObjectId, tourId?: ObjectId) => {
 export const bookTourDb = async (bookingInfo: bookingInterface) => {
   try {
     const bookTour = await Booking.create(bookingInfo);
-    return bookTour;
+    const tour = await Booking.findById(bookTour._id).populate({
+      path: "tour",
+    });
+    return tour;
   } catch (error) {
     throw new Error((error as Error).message);
   }
