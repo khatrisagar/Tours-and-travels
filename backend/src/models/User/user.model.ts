@@ -23,6 +23,7 @@ const user = new Schema<userModelInterface>(
     roles: {
       type: [Schema.Types.ObjectId],
       default: [Object("64a9099f92270a3ab23bb766")],
+      ref: "Role",
     },
   },
   {

@@ -1,11 +1,12 @@
 import { apiResponseMessages, httpStatus } from "@/enums";
 import { APIFeature, APIResponse } from "@/utils";
 import { Request, Response } from "express";
-import { updateUserProfileDb } from "@/services";
+import { getUserProfileDb, updateUserProfileDb } from "@/services";
 
 export const getProfile = async (req: Request, res: Response) => {
   try {
-    const user = (req as any).user;
+    const user = await getUserProfileDb((req as any).user._id);
+    console.log(user);
     return new APIResponse(res, httpStatus.OK, user).success();
   } catch (error) {
     console.log(error);

@@ -14,6 +14,7 @@
             </li>
             <li><NuxtLink :to="{ name: 'bookings' }">Bookings</NuxtLink></li>
             <li><NuxtLink :to="{ name: 'profile' }">Profile</NuxtLink></li>
+            <li><NuxtLink :to="{ name: 'profile' }">Admin</NuxtLink></li>
           </ul>
         </nav>
       </div>

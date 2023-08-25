@@ -36,7 +36,7 @@ export default {
     const router = useRouter();
     const { axiosPost } = useAxios();
     // from store
-    const storeUser = userStore();
+    // const storeUser = userStore();
     const errorStore = commonErrorStore();
 
     const onUserLogin = async () => {
@@ -44,7 +44,7 @@ export default {
         loading.value = true;
         const apiResponse = await axiosPost("auth/login", user.value);
         localStorage.setItem("tnt_at", apiResponse.data.data);
-        storeUser.addUserToStore({ token: apiResponse.data.data });
+        // storeUser.addUserToStore({ token: apiResponse.data.data });
         router.push({ name: "home" });
       } catch (error) {
         errorStore.showErrorFromStore((error as any).response.data.message);
