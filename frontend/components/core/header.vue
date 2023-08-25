@@ -13,7 +13,7 @@
               <NuxtLink :to="{ name: 'tours' }">Tours</NuxtLink>
             </li>
             <li><NuxtLink :to="{ name: 'bookings' }">Bookings</NuxtLink></li>
-            <li><NuxtLink :to="{ name: 'bookings' }">Profile</NuxtLink></li>
+            <li><NuxtLink :to="{ name: 'profile' }">Profile</NuxtLink></li>
           </ul>
         </nav>
       </div>

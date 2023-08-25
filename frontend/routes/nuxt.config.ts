@@ -26,6 +26,12 @@ export default defineNuxtConfig({
           file: "@/pages/bookings/index.vue",
         },
         {
+          name: "profile",
+          path: "/profile",
+          file: "@/pages/profile/index.vue",
+        },
+
+        {
           name: "login",
           path: "/auth/login",
           file: "@/pages/auth/login.vue",
