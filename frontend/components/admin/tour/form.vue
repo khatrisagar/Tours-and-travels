@@ -14,6 +14,36 @@
       label="Cover Image"
       variant="solo-inverted"
     ></v-file-input>
+    <div
+      v-for="(tourLocation, index) in tour.locationsCovered.length"
+      :key="index"
+    >
+      <p>Location Covered</p>
+      <v-btn
+        icon="fa-solid fa-minus"
+        @click="removeLocationCovered(index)"
+      ></v-btn>
+      {{ tour.locationsCovered[index] }}-{{ index }}
+      <v-text-field
+        label="day"
+        v-model="tour.locationsCovered[index].day"
+      ></v-text-field>
+      <v-text-field
+        label="name"
+        v-model="tour.locationsCovered[index].name"
+      ></v-text-field>
+      <v-textarea
+        label="description"
+        v-model="tour.locationsCovered[index].details"
+      ></v-textarea>
+      <v-select
+        label="description"
+        v-model="tour.locationsCovered[index].includedMeals"
+        :items="['Lunch', 'Dinner']"
+        multiple
+      ></v-select>
+    </div>
+    <v-btn icon="fa-solid fa-plus" @click="addNewLocation"></v-btn>
     <v-btn class="bg-black" @click="onAddTour">Add </v-btn>
   </v-form>
 </template>
@@ -30,7 +60,14 @@ export default {
       endDate: "",
       price: null,
       coverImage: [{ name: "", type: "" }],
-      locationsCovered: [],
+      locationsCovered: [
+        {
+          day: "",
+          name: "",
+          details: "",
+          includedMeals: [],
+        },
+      ],
     });
 
     const convertImageToBase64 = () => {
@@ -59,7 +96,18 @@ export default {
         console.log(error);
       }
     };
-    return { onAddTour, tour };
+    const addNewLocation = () => {
+      tour.value.locationsCovered.push({
+        day: "",
+        name: "",
+        details: "",
+        includedMeals: [],
+      });
+    };
+    const removeLocationCovered = (locationIndex) => {
+      tour.value.locationsCovered.splice(locationIndex, 1);
+    };
+    return { onAddTour, tour, addNewLocation, removeLocationCovered };
   },
 };
 </script>
