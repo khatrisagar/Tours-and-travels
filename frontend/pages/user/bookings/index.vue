@@ -3,7 +3,7 @@
     <div class="booking-header">
       <h3>My Bookings</h3>
     </div>
-    <booking-table :bookings="bookings" />
+    <user-booking-table :bookings="bookings" />
   </div>
 </template>
 

@@ -3,18 +3,39 @@
     <div class="header-container container">
       <div class="left-header">
         <h3 class="logo-text">
-          <NuxtLink :to="{ name: 'tours' }">Tours</NuxtLink>
+          <NuxtLink v-if="!isAdminMode" :to="{ name: 'tours' }">Tours</NuxtLink>
+          <NuxtLink v-if="isAdminMode" :to="{ name: 'admin-tours' }"
+            >Admin Tours</NuxtLink
+          >
         </h3>
       </div>
       <div class="right-header">
-        <nav>
+        <nav v-if="!isAdminMode">
           <ul class="link-wrapper">
             <li>
               <NuxtLink :to="{ name: 'tours' }">Tours</NuxtLink>
             </li>
+
             <li><NuxtLink :to="{ name: 'bookings' }">Bookings</NuxtLink></li>
             <li><NuxtLink :to="{ name: 'profile' }">Profile</NuxtLink></li>
-            <li><NuxtLink :to="{ name: 'profile' }">Admin</NuxtLink></li>
+            <li v-if="!isUserLoggedIn">
+              <NuxtLink :to="{ name: 'auth-login' }">Login</NuxtLink>
+            </li>
+
+            <li v-if="isUserAdmin" @click="goToAdminPanel">Admin</li>
+          </ul>
+        </nav>
+        <nav v-if="isAdminMode">
+          <ul class="link-wrapper">
+            <li>
+              <NuxtLink :to="{ name: 'admin-tours' }">Tours</NuxtLink>
+            </li>
+
+            <li><NuxtLink :to="{ name: 'add-tours' }">Add Tours</NuxtLink></li>
+
+            <li v-if="isUserAdmin" @click="goToUserPanel" class="switchUser">
+              <v-btn icon="fa-solid fa-repeat"></v-btn>
+            </li>
           </ul>
         </nav>
       </div>
@@ -23,9 +44,63 @@
 </template>
 
 <script lang="ts">
+import { userStore } from "@/store";
+import { siteMode } from "@/enums";
 export default {
   setup() {
-    return {};
+    const storeUser = userStore();
+    const isAdminMode = ref(false);
+    const router = useRouter();
+    const setSiteMode = () => {
+      if (
+        localStorage.getItem("mode") === siteMode.ADMIN &&
+        isUserAdmin.value
+      ) {
+        console.log(isUserAdmin.value);
+        isAdminMode.value = true;
+      } else {
+        isAdminMode.value = false;
+      }
+    };
+    onMounted(() => {
+      setSiteMode();
+    });
+
+    const isUserLoggedIn = computed(() => {
+      return storeUser.getUserFromStore ? true : false;
+    });
+
+    const isUserAdmin = computed(() => {
+      const isAdminRole = storeUser.getUserFromStore?.roles?.find(
+        (role: any) => {
+          return role.name === "ADMIN" ? true : false;
+        }
+      );
+      return isAdminRole ? true : false;
+    });
+
+    const goToAdminPanel = () => {
+      localStorage.setItem("mode", siteMode.ADMIN);
+      isAdminMode.value = true;
+      router.push({ name: "admin-tours" });
+    };
+    const goToUserPanel = () => {
+      localStorage.setItem("mode", siteMode.USER);
+      isAdminMode.value = false;
+      router.push({ name: "tours" });
+    };
+
+    watch(isUserAdmin, () => {
+      setSiteMode();
+    });
+
+    return {
+      isUserLoggedIn,
+      isUserAdmin,
+      goToAdminPanel,
+      goToUserPanel,
+      isAdminMode,
+    };
   },
 };
 </script>

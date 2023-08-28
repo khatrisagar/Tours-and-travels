@@ -16,7 +16,10 @@ export const getAdminToursDb = async (
       },
       { field: "price", type: "number" },
     ];
-    const tourFeatures = new APIFeature(Tour.find(), queryString)
+    const tourFeatures = new APIFeature(
+      Tour.find().populate({ path: "reviews" }),
+      queryString
+    )
       .sort()
       .filter(allowedSearchFields);
     const count = await tourFeatures.query.clone().count();
@@ -36,7 +39,7 @@ export const getAdminToursDb = async (
 
 export const getAdminTourByIdDb = async (tourId: string) => {
   try {
-    const tour = await Tour.findById(tourId);
+    const tour = await Tour.findById(tourId).populate({ path: "reviews" });
     return tour;
   } catch (error) {
     throw new Error((error as Error).message);
@@ -59,7 +62,7 @@ export const updateToursDb = async (
   try {
     const tour = await Tour.findByIdAndUpdate(tourId, tourPayload, {
       new: true,
-    });
+    }).populate({ path: "reviews" });
     return tour;
   } catch (error) {
     throw new Error((error as Error).message);
