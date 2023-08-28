@@ -3,7 +3,7 @@
     <div class="profile-header">
       <h3>Profile</h3>
     </div>
-    <user-detail />
+    <profile-detail />
   </div>
 </template>
 

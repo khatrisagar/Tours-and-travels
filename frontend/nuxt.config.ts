@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ["./routes/", "./plugins/vuetify"],
+
   css: ["~/assets/styles/main.css"],
   modules: ["@nuxtjs/google-fonts", "@pinia/nuxt"],
   googleFonts: {

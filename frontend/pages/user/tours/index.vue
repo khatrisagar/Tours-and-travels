@@ -2,7 +2,7 @@
   <div class="touts-home-wrapper">
     <div class="container card-wrapper" v-if="isLoading">
       <div v-for="tour in toursData" class="outer-container" :key="tour._id">
-        <tour-card :tour="tour" @click="onClickTour(tour._id)" />
+        <user-tour-card :tour="tour" @click="onClickTour(tour._id)" />
       </div>
     </div>
   </div>

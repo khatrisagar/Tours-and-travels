@@ -1,6 +1,6 @@
 <template>
   <div class="container tour-detail-view" v-if="isLoading">
-    <tour-detail-view
+    <user-tour-detail-view
       :tour="tour"
       :bookings="bookings"
       @updateBookedTours="updateBookedTours"

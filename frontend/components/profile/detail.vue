@@ -22,10 +22,13 @@
       >
       <v-btn @click="toggleCancelEditMode" v-if="isEditMode">Cancel</v-btn>
     </v-form>
+
+    <v-btn @click="logoutUser" class="bg-black">Logout</v-btn>
   </div>
 </template>
 
 <script lang="ts">
+import { userStore } from "@/store";
 export default {
   setup() {
     const user = ref({
@@ -35,6 +38,8 @@ export default {
     });
     const copyUser = ref();
     const isEditMode = ref(false);
+    const router = useRouter();
+    const storeUser = userStore();
     const { axiosGet, axiosPatch } = useAxios();
 
     onMounted(async () => {
@@ -64,12 +69,19 @@ export default {
       }
     };
 
+    const logoutUser = () => {
+      localStorage.clear();
+      storeUser.removeUserFromStore();
+      router.push({ name: "auth-login" });
+    };
+
     return {
       user,
       onUserUpdate,
       isEditMode,
       toggleEditMode,
       toggleCancelEditMode,
+      logoutUser,
     };
   },
 };

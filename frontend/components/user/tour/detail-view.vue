@@ -55,7 +55,7 @@
     </div>
     <div class="location-wrapper mt-4">
       <h2 class="mb-4">Locations Covered</h2>
-      <tour-location-day-card
+      <user-tour-location-day-card
         v-for="location in tour.locationsCovered"
         :key="location._id"
         :location="location"
@@ -64,7 +64,7 @@
     <div class="review-wrapper mt-4" ref="reviews">
       <h2 class="mb-4">Reviews</h2>
       <div v-for="review in tour.reviews" :key="review._id">
-        <tour-review-card :review="review" />
+        <user-tour-review-card :review="review" />
       </div>
       <div v-if="!tour.reviews || (tour?.reviews && !tour?.reviews?.length)">
         No reviews
