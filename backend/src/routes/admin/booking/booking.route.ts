@@ -4,13 +4,19 @@ const router = Router();
 
 import { authenticate, routeProtection } from "@/middlewares";
 
-import { getTourBookings } from "@/controllers";
+import { getAllTourBookings, getTourBookings } from "@/controllers";
 
 router.get(
   "/:tourId",
   authenticate,
   routeProtection(["viewAdminBookings"]),
   getTourBookings
+);
+router.get(
+  "/",
+  authenticate,
+  routeProtection(["viewAdminBookings"]),
+  getAllTourBookings
 );
 
 export { router as adminBookingRoutes };
