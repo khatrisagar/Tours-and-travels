@@ -1,5 +1,5 @@
 <template>
-  <v-form @submit.prevent="onAddTour">
+  <v-form @submit.prevent="onAddTour" v-if="isLoading">
     <v-text-field label="Name" v-model="tour.name"> </v-text-field>
     <v-textarea label="description" v-model="tour.description"> </v-textarea>
     <v-text-field type="date" label="Start date" v-model="tour.startDate">
@@ -7,11 +7,12 @@
     <v-text-field type="date" label="End date" v-model="tour.endDate">
     </v-text-field>
     <v-text-field label="Price" v-model="tour.price"> </v-text-field>
-
-    <div
-      v-for="(tourLocation, index) in tour.locationsCovered.length"
-      :key="index"
-    >
+    <v-select
+      label="isActive"
+      v-model="tour.isTourActive"
+      :items="['true', 'false']"
+    ></v-select>
+    <div v-for="(tourLocation, index) in tour.locationsCovered" :key="index">
       <p>Location Covered</p>
       <v-btn
         icon="fa-solid fa-minus"
@@ -37,11 +38,11 @@
       ></v-select>
     </div>
     <v-btn icon="fa-solid fa-plus" @click="addNewLocation"></v-btn>
-    <!-- <v-file-input
+    <v-file-input
       v-model="tour.coverImage"
       label="Cover Image"
       variant="solo-inverted"
-    ></v-file-input> -->
+    ></v-file-input>
     <v-btn class="bg-black" v-if="!idEditMode" @click="onAddTour">Add </v-btn>
     <v-btn class="bg-black" v-if="idEditMode" @click="onEditTour"
       >Save Edit
@@ -59,6 +60,7 @@ export default {
     },
   },
   setup(props) {
+    const isLoading = ref(false);
     const { axiosGet, axiosPost, axiosPatch } = useAxios();
     const router = useRouter();
     const route = useRoute();
@@ -68,7 +70,7 @@ export default {
       startDate: "",
       endDate: "",
       price: null,
-      coverImage: [{ name: "", type: "" }],
+      coverImage: "",
       locationsCovered: [
         {
           day: "",
@@ -83,36 +85,51 @@ export default {
       try {
         const tourId = route.params?.tourId;
         if (tourId) {
-          const getTourById = await axiosGet(`tours/${tourId}`);
-          tour.value = JSON.parse(JSON.stringify(getTourById.data.data));
-          const res = await fetch(getTourById.data.data.coverImage);
+          const getTourById = await axiosGet(`admin/tours/${tourId}`);
+          tour.value = JSON.parse(JSON.stringify(getTourById.data?.data));
+          const res = await fetch(getTourById?.data?.data?.coverImage);
           const blob = await res.blob();
-          tour.value.coverImage = [
-            new File([blob], getTourById.data.data.name, {
+          const coverImageFile = new File(
+            [blob],
+            getTourById?.data?.data?.name,
+            {
               type: "image/jpeg",
-            }),
-          ];
+            }
+          );
+          tour.value = {
+            ...getTourById?.data?.data,
+            coverImage: [coverImageFile],
+          };
+          console.log("tttt", tour.value);
         }
-      } catch (error) {}
+      } catch (error) {
+      } finally {
+        isLoading.value = true;
+      }
     });
 
     const convertImageToBase64 = () => {
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL((tour.value as any)?.coverImage?.[0]);
-        let tourImageObject;
-        reader.onload = () => {
-          tourImageObject = {
-            image: reader.result,
-            name: tour.value?.coverImage?.[0]?.name,
-            type: tour.value?.coverImage?.[0]?.type,
+      try {
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.readAsDataURL((tour?.value as any)?.coverImage?.[0]);
+          let tourImageObject;
+          reader.onload = () => {
+            tourImageObject = {
+              image: reader?.result,
+              name: tour.value?.coverImage?.[0]?.name,
+              type: tour.value?.coverImage?.[0]?.type,
+            };
+            resolve(tourImageObject);
           };
-          resolve(tourImageObject);
-        };
-      });
+        });
+      } catch (error) {
+        console.log("eeeeeeeee", error);
+      }
     };
     const onAddTour = async () => {
       try {
+        console.log(tour.value);
         let tourClone = JSON.parse(JSON.stringify(tour.value));
         const tourCoverImage: any = await convertImageToBase64();
         (tourClone["coverImage"] as any) = tourCoverImage.image;
@@ -150,6 +167,7 @@ export default {
       addNewLocation,
       removeLocationCovered,
       onEditTour,
+      isLoading,
     };
   },
 };
