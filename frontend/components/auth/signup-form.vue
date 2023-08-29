@@ -14,6 +14,7 @@
       <v-text-field v-model="user.email" label="Email"></v-text-field>
       <v-text-field v-model="user.password" label="Password"></v-text-field>
       <v-text-field
+        type="password"
         v-model="user.confirmPassword"
         label="Confirm Password"
       ></v-text-field>
@@ -25,6 +26,10 @@
         class="mt-2 bg-black"
         text="Submit"
       ></v-btn>
+      <p class="text-center mt-2">
+        <span> Already have account? </span>
+        <NuxtLink class="text-blue" :to="{ name: 'login' }">Login Now</NuxtLink>
+      </p>
     </v-form>
   </v-sheet>
 </template>
