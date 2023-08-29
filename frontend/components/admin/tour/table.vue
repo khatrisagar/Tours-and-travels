@@ -46,10 +46,10 @@ export default {
   },
 
   setup() {
+    const router = useRouter();
     const onEditTour = (tourId: string) => {
-      console.log(tourId);
+      router.push({ name: "edit-tours", params: { tourId: tourId } });
     };
-
     return {
       onEditTour,
     };

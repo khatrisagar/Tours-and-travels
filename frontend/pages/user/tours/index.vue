@@ -41,8 +41,9 @@ export default {
   flex-direction: row;
   gap: 1rem;
   margin-top: 2rem;
+  flex-wrap: wrap;
 }
 .outer-container {
-  width: calc(100% / 3);
+  width: calc((100% - 48px) / 3);
 }
 </style>

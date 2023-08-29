@@ -4,6 +4,7 @@
       :tour="tour"
       :bookings="bookings"
       @updateBookedTours="updateBookedTours"
+      @updateReviews="updateReviews"
     />
   </div>
 </template>
@@ -16,15 +17,23 @@ export default {
     const tour = ref();
     const bookings = ref();
     const isLoading = ref(false);
+
+    const loadTourData = async () => {
+      try {
+        const tourId = route.params.tourId;
+        const [selectedTour, tourBookings] = await Promise.all([
+          axiosGet(`tours/${tourId}`),
+          axiosGet("bookings"),
+        ]);
+        tour.value = selectedTour.data.data;
+        bookings.value = tourBookings.data.data;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     onMounted(async () => {
-      const tourId = route.params.tourId;
-      const [selectedTour, tourBookings] = await Promise.all([
-        axiosGet(`tours/${tourId}`),
-        axiosGet("bookings"),
-      ]);
-      tour.value = selectedTour.data.data;
-      bookings.value = tourBookings.data.data;
-      console.log("v", selectedTour);
+      await loadTourData();
       isLoading.value = true;
     });
 
@@ -33,11 +42,16 @@ export default {
       console.log("res", bookings.value, newBookedTour);
     };
 
+    const updateReviews = async () => {
+      await loadTourData();
+    };
+
     return {
       tour,
       bookings,
       isLoading,
       updateBookedTours,
+      updateReviews,
     };
   },
 };

@@ -63,6 +63,22 @@
     </div>
     <div class="review-wrapper mt-4" ref="reviews">
       <h2 class="mb-4">Reviews</h2>
+      <div class="give-review-box mb-4" v-if="isTourBooked">
+        <v-text-field
+          hide-details="auto"
+          class="give-review-box-comment"
+          label="comment"
+          v-model="newReview.comment"
+        ></v-text-field>
+        <v-select
+          hide-details="auto"
+          class="give-review-box-rating"
+          label="Select Rating"
+          v-model="newReview.rating"
+          :items="[1, 2, 3, 4, 5]"
+        ></v-select>
+        <v-btn class="bg-black" @click="onAddNewReview(tour._id)">Add</v-btn>
+      </div>
       <div v-for="review in tour.reviews" :key="review._id">
         <user-tour-review-card :review="review" />
       </div>
@@ -87,6 +103,14 @@ export default {
   setup(props, ctx) {
     const reviews = ref();
     const { axiosPost } = useAxios();
+
+    const newReview = ref({
+      tour: "",
+      comment: "",
+      rating: "",
+    });
+    const cloneNewReview = ref(JSON.parse(JSON.stringify(newReview.value)));
+
     const onclickViewReviews = () => {
       console.log("ref", reviews.value);
       reviews.value?.scrollIntoView({
@@ -94,11 +118,18 @@ export default {
       });
     };
 
+    const onAddNewReview = async (tourId: string) => {
+      newReview.value.tour = tourId;
+      await axiosPost("reviews", newReview.value);
+      newReview.value = JSON.parse(JSON.stringify(cloneNewReview.value));
+
+      ctx.emit("updateReviews");
+    };
+
     const isTourBooked = computed(() => {
       const selectedTour = props.bookings?.find(
         (booking: any) => booking.tour._id === props.tour?._id
       );
-      console.log("propsss", props.bookings);
       return selectedTour ? true : false;
     });
 
@@ -117,6 +148,8 @@ export default {
       onclickViewReviews,
       onClickBookTour,
       isTourBooked,
+      newReview,
+      onAddNewReview,
     };
   },
 };
@@ -165,5 +198,17 @@ export default {
   font-weight: 900;
   color: red;
   font-style: italic;
+}
+.give-review-box {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+}
+.give-review-box-comment {
+  width: 40%;
+}
+.give-review-box-rating {
+  width: 150px;
 }
 </style>

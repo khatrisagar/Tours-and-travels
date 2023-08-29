@@ -52,6 +52,11 @@ export default defineNuxtConfig({
           name: "add-tours",
           path: "/admin/add-tours",
           file: "@/pages/admin/tours/add-tour.vue",
+        },
+        {
+          name: "edit-tours",
+          path: "/admin/edit-tours/:tourId",
+          file: "@/pages/admin/tours/edit-tour.vue",
         }
       );
 

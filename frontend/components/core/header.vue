@@ -32,6 +32,9 @@
             </li>
 
             <li><NuxtLink :to="{ name: 'add-tours' }">Add Tours</NuxtLink></li>
+            <li>
+              <NuxtLink :to="{ name: 'admin-bookings' }">Bookings</NuxtLink>
+            </li>
 
             <li v-if="isUserAdmin" @click="goToUserPanel" class="switchUser">
               <v-btn icon="fa-solid fa-repeat"></v-btn>
