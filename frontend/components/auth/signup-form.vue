@@ -54,11 +54,7 @@ export default {
           router.push({ name: "login" });
         }
       } catch (error) {
-        console.log(error);
-        // store.dispatch(
-        //   "common/setErrorMessageState",
-        //   (error as any).response.data.message
-        // );
+        //
       } finally {
         loading.value = false;
       }

@@ -59,7 +59,6 @@ export default {
         localStorage.getItem("mode") === siteMode.ADMIN &&
         isUserAdmin.value
       ) {
-        console.log(isUserAdmin.value);
         isAdminMode.value = true;
       } else {
         isAdminMode.value = false;

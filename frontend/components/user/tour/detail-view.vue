@@ -112,7 +112,6 @@ export default {
     const cloneNewReview = ref(JSON.parse(JSON.stringify(newReview.value)));
 
     const onclickViewReviews = () => {
-      console.log("ref", reviews.value);
       reviews.value?.scrollIntoView({
         behavior: "smooth",
       });

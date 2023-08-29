@@ -28,7 +28,7 @@ export default {
         tour.value = selectedTour.data.data;
         bookings.value = tourBookings.data.data;
       } catch (error) {
-        console.log(error);
+        //
       }
     };
 
@@ -39,7 +39,6 @@ export default {
 
     const updateBookedTours = (newBookedTour: object) => {
       bookings.value.push(newBookedTour);
-      console.log("res", bookings.value, newBookedTour);
     };
 
     const updateReviews = async () => {

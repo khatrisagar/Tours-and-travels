@@ -100,7 +100,6 @@ export default {
             ...getTourById?.data?.data,
             coverImage: [coverImageFile],
           };
-          console.log("tttt", tour.value);
         }
       } catch (error) {
       } finally {
@@ -124,19 +123,18 @@ export default {
           };
         });
       } catch (error) {
-        console.log("eeeeeeeee", error);
+        //
       }
     };
     const onAddTour = async () => {
       try {
-        console.log(tour.value);
         let tourClone = JSON.parse(JSON.stringify(tour.value));
         const tourCoverImage: any = await convertImageToBase64();
         (tourClone["coverImage"] as any) = tourCoverImage.image;
         await axiosPost("admin/tours/add-tours", tourClone);
         router.push({ name: "admin-tours" });
       } catch (error) {
-        console.log(error);
+        //
       }
     };
     const onEditTour = async () => {
@@ -147,7 +145,7 @@ export default {
         await axiosPatch(`admin/tours/${route.params.tourId}`, tourClone);
         router.push({ name: "admin-tours" });
       } catch (error) {
-        console.log(error);
+        //
       }
     };
     const addNewLocation = () => {

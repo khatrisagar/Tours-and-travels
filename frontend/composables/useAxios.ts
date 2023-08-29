@@ -17,8 +17,8 @@ if (typeof window !== "undefined") {
     (response) => response,
     (error) => {
       if (error?.response?.status === 401) {
-        localStorage.removeItem("auth_token");
-        location.href = "/auth/login";
+        // localStorage.removeItem("tnt_at");
+        // location.href = "/auth/login";
       }
       return Promise.reject(error);
     }

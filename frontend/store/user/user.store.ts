@@ -1,4 +1,4 @@
-export const userStore = defineStore("user", () => {
+export const userStore = defineStore("auth", () => {
   const user: any = ref(null);
   const addUserToStore = (userObject: any) => {
     user.value = userObject;
