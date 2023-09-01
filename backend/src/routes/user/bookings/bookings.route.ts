@@ -6,6 +6,7 @@ import { authenticate, routeProtection } from "@/middlewares";
 
 import {
   bookTour,
+  cancelBookingPaymentIntent,
   getBookingPaymentIntent,
   getbookingTour,
 } from "@/controllers";
@@ -23,6 +24,12 @@ router.post(
   authenticate,
   routeProtection(["bookTours"]),
   getBookingPaymentIntent
+);
+router.post(
+  "/cancel-payment-intent",
+  authenticate,
+  routeProtection(["bookTours"]),
+  cancelBookingPaymentIntent
 );
 
 export { router as userBookingRoutes };

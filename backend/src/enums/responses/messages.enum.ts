@@ -9,4 +9,6 @@ export enum apiResponseMessages {
   INVALID_EMAIL_PASSWORD = "Invalid Email or Password",
   DELETED_SUCCESS = "Deleted successfully",
   ALREADY_BOOKED = "Already Booked",
+  PAYMENT_CANCELED = "Payment Canceled",
+  PAYMENT_Confirmed = "Payment Confirmed",
 }

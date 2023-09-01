@@ -17,10 +17,35 @@ export const getBookingPaymentIntent = async (req: Request, res: Response) => {
       automatic_payment_methods: { enabled: true },
       currency: "inr",
       description: "Tour Booking Payment",
+      metadata: {
+        email: (req as any).user.email,
+      },
     });
 
     return new APIResponse(res, httpStatus.OK, paymentIntent).success();
   } catch (error) {
+    return new APIResponse(
+      res,
+      httpStatus.INTERNAL_SERVER_ERROR,
+      apiResponseMessages.SOMETHING_WENT_WRONG
+    ).failed();
+  }
+};
+
+export const cancelBookingPaymentIntent = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { paymentIntentId } = req.body;
+    await stripe.paymentIntent.modify(paymentIntentId, "canceled", "abandoned");
+    return new APIResponse(
+      res,
+      httpStatus.OK,
+      apiResponseMessages.PAYMENT_CANCELED
+    ).success();
+  } catch (error) {
+    console.log("eeeeeeeeeee", error);
     return new APIResponse(
       res,
       httpStatus.INTERNAL_SERVER_ERROR,
