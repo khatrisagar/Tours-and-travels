@@ -24,6 +24,10 @@ const booking = new Schema<bookingModelInterface>(
       required: true,
       enum: ["cash", "online"],
     },
+    paymentId: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

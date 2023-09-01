@@ -3,6 +3,31 @@ import { APIResponse } from "@/utils";
 import { Request, Response } from "express";
 import { bookTourDb, getBookingsDb, getTourByIdDb } from "@/services";
 import { userRequestPayload } from "@/interfaces";
+require("dotenv").config({ path: "./.env" });
+
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TOKEN);
+
+export const getBookingPaymentIntent = async (req: Request, res: Response) => {
+  try {
+    const tourId = req.body.tour;
+    const tour = await getTourByIdDb(tourId);
+    if (!tour) throw new Error(apiResponseMessages.TOUR_NOT_FOUND);
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: tour.price * 100,
+      automatic_payment_methods: { enabled: true },
+      currency: "inr",
+      description: "Tour Booking Payment",
+    });
+
+    return new APIResponse(res, httpStatus.OK, paymentIntent).success();
+  } catch (error) {
+    return new APIResponse(
+      res,
+      httpStatus.INTERNAL_SERVER_ERROR,
+      apiResponseMessages.SOMETHING_WENT_WRONG
+    ).failed();
+  }
+};
 
 export const bookTour = async (req: Request, res: Response) => {
   try {

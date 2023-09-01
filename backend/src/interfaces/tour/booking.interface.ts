@@ -5,6 +5,7 @@ export interface bookingModelInterface {
   tour: ObjectId;
   paymentStatus: string;
   paymentType: string;
+  paymentId: string;
   createdAt: Date;
   updatedAt: Date;
 }

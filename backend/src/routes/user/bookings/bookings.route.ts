@@ -4,7 +4,11 @@ const router = Router();
 
 import { authenticate, routeProtection } from "@/middlewares";
 
-import { bookTour, getbookingTour } from "@/controllers";
+import {
+  bookTour,
+  getBookingPaymentIntent,
+  getbookingTour,
+} from "@/controllers";
 
 router.get(
   "/",
@@ -13,5 +17,12 @@ router.get(
   getbookingTour
 );
 router.post("/", authenticate, routeProtection(["bookTours"]), bookTour);
+
+router.post(
+  "/get-payment-intent",
+  authenticate,
+  routeProtection(["bookTours"]),
+  getBookingPaymentIntent
+);
 
 export { router as userBookingRoutes };
