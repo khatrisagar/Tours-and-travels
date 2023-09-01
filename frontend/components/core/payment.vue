@@ -1,23 +1,40 @@
 <template>
   <div class="payment-wrapper" ref="paymentWrapper">
     <div class="payment-card">
-      <div class="alert" v-if="isAlert">
-        <v-btn @click="onPayPayment"
-          >Pay
+      <div class="payment-alert d-flex flex-column" v-if="isAlert">
+        <p class="text-h5">Are You Confirm to Pay?</p>
+        <div class="mt-4">
+          <v-btn @click="onPayPayment" class="mr-4 bg-black"
+            >Pay
+            {{
+              Intl.NumberFormat("en-in", {
+                style: "currency",
+                currency: "INR",
+              }).format(tour?.price)
+            }}</v-btn
+          >
+          <v-btn @click="cancelPayment">Cancel</v-btn>
+        </div>
+      </div>
+      <div class="payment-confirm" v-if="!isAlert">
+        <p class="text-h6">{{ tour?.name }}</p>
+        <p class="text-p">
+          Amount-
           {{
             Intl.NumberFormat("en-in", {
               style: "currency",
               currency: "INR",
-            }).format(tour?.price)
-          }}</v-btn
-        >
-        <v-btn @click="cancelPayment">Cancel</v-btn>
-      </div>
-      <div v-if="!isAlert">
-        <div ref="cardDiv"></div>
+            }).format(tour?.price) + " /-"
+          }}
+        </p>
+        <div class="confirm-card" ref="cardDiv"></div>
         <p class="text-red" v-if="paymentError">{{ paymentError }}</p>
-        <v-btn @click="onConfirmPayment">Confirm Payment</v-btn>
-        <v-btn @click="cancelPayment">Cancel</v-btn>
+        <div class="confirm-btns">
+          <v-btn class="bg-black mr-4" @click="onConfirmPayment"
+            >Confirm Payment</v-btn
+          >
+          <v-btn @click="cancelPayment">Cancel</v-btn>
+        </div>
       </div>
     </div>
   </div>
@@ -69,7 +86,7 @@ export default {
       const elements = stripe.elements("card");
       let style = {
         base: {
-          border: "1px solid #D8D8D8",
+          border: "1px solid #black",
           borderRadius: "4px",
           color: "#000",
         },
@@ -140,5 +157,29 @@ export default {
   background-color: white;
   box-shadow: 0px 0px 3px black;
   border-radius: 6px;
+}
+.payment-alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.payment-confirm {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+}
+.confirm-card {
+  margin-top: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.158);
+  padding: 10px;
+  border-radius: 6px;
+}
+.confirm-btns {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* justify-content: center; */
 }
 </style>
