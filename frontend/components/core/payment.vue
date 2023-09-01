@@ -13,7 +13,7 @@
               }).format(tour?.price)
             }}</v-btn
           >
-          <v-btn @click="cancelPayment">Cancel</v-btn>
+          <v-btn @click="cancelPayment(false)">Cancel</v-btn>
         </div>
       </div>
       <div class="payment-confirm" v-if="!isAlert">
@@ -33,7 +33,7 @@
           <v-btn class="bg-black mr-4" @click="onConfirmPayment"
             >Confirm Payment</v-btn
           >
-          <v-btn @click="cancelPayment">Cancel</v-btn>
+          <v-btn @click="cancelPayment(true)">Cancel</v-btn>
         </div>
       </div>
     </div>
@@ -42,6 +42,7 @@
 
 <script lang="ts">
 import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
 export default {
   props: {
     tour: {
@@ -100,9 +101,22 @@ export default {
       card.mount(cardDiv.value);
     };
 
-    const cancelPayment = () => {
-      window.onscroll = function () {};
-      ctx.emit("cancelPayment");
+    const cancelPayment = async (isPaymentIntentCreated = false) => {
+      try {
+        // console.log("first", paymentIntent.value);
+        window.onscroll = function () {};
+
+        // if (isPaymentIntentCreated) {
+        //   console.log("222222");
+        //   await axiosPost("bookings/cancel-payment-intent", {
+        //     paymentIntentId: paymentIntent.value.id,
+        //     cancellation_reason: "on click cancel button",
+        //   });
+        // }
+        ctx.emit("cancelPayment");
+      } catch (error) {
+        console.log("error", error);
+      }
     };
 
     const onConfirmPayment = async () => {
