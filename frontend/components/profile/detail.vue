@@ -23,7 +23,7 @@
       <v-btn @click="toggleCancelEditMode" v-if="isEditMode">Cancel</v-btn>
     </v-form>
 
-    <v-btn @click="logoutUser" class="bg-black">Logout</v-btn>
+    <v-btn @click="logoutUser" class="bg-black mt-4">Logout</v-btn>
   </div>
 </template>
 

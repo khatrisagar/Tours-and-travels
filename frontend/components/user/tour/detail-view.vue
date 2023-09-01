@@ -1,4 +1,12 @@
 <template>
+  <div>
+    <core-payment
+      v-if="isPaymentMode"
+      :tour="tour"
+      @cancelPayment="closePaymentMode"
+      @onConfirmPayment="onConfirmPayment"
+    ></core-payment>
+  </div>
   <div class="detail-view-wrapper">
     <NuxtLink :to="{ name: 'tours' }" class="text-black">
       <div class="d-flex align-center back-navigator">
@@ -94,6 +102,7 @@ export default {
   props: {
     tour: {
       type: Object,
+      required: true,
     },
     bookings: {
       type: Object,
@@ -103,7 +112,21 @@ export default {
   setup(props, ctx) {
     const reviews = ref();
     const { axiosPost } = useAxios();
+    const isPaymentMode = ref(false);
 
+    // let scrollTop: any;
+    // let scrollLeft: any;
+
+    // function disableScroll() {
+    //   scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    //   scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    // }
+    // function enableScroll() {
+    //   window.onscroll = function () {};
+    // }
+    // window.onscroll = function () {
+    //   window.scrollTo(scrollLeft, scrollTop);
+    // };
     const newReview = ref({
       tour: "",
       comment: "",
@@ -132,14 +155,27 @@ export default {
       return selectedTour ? true : false;
     });
 
-    const onClickBookTour = async (tourId: string) => {
-      const bookingPayload = {
-        tour: tourId,
-        paymentStatus: "completed",
-        paymentType: "online",
-      };
-      const bookTour = await axiosPost("bookings", bookingPayload);
-      ctx.emit("updateBookedTours", bookTour.data.data);
+    const closePaymentMode = () => {
+      isPaymentMode.value = false;
+    };
+    const onClickBookTour = async () => {
+      isPaymentMode.value = true;
+    };
+
+    const onConfirmPayment = async (paymentInfo: any) => {
+      try {
+        closePaymentMode();
+        const bookingPayload = {
+          tour: props.tour._id,
+          paymentStatus: "completed",
+          paymentType: "online",
+          paymentId: paymentInfo?.id,
+        };
+        const bookTour = await axiosPost("bookings", bookingPayload);
+        ctx.emit("updateBookedTours", bookTour.data.data);
+      } catch (error) {
+        console.log("Error while payment");
+      }
     };
 
     return {
@@ -149,6 +185,9 @@ export default {
       isTourBooked,
       newReview,
       onAddNewReview,
+      isPaymentMode,
+      closePaymentMode,
+      onConfirmPayment,
     };
   },
 };

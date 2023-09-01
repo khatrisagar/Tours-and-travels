@@ -24,6 +24,14 @@ export default {
     const getErrorMessage = computed(() => {
       return store.getErrorFromStore;
     });
+    watch(
+      () => getErrorMessage.value,
+      () => {
+        setTimeout(() => {
+          closeErrorPopup();
+        }, 2000);
+      }
+    );
 
     return {
       closeErrorPopup,

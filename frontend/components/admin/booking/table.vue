@@ -10,6 +10,7 @@
           <th>Date</th>
           <th>Payment Status</th>
           <th>Payment Type</th>
+          <!-- <th>Payment Id</th> -->
         </tr>
       </thead>
       <tbody>
@@ -32,6 +33,7 @@
           <td>{{ new Date(booking.createdAt).toLocaleString() }}</td>
           <td>{{ booking.paymentStatus }}</td>
           <td>{{ booking.paymentType }}</td>
+          <!-- <td>{{ booking.paymentId }}</td> -->
         </tr>
       </tbody>
     </v-table>

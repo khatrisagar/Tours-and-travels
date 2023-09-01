@@ -21,6 +21,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       BACKEND_URL: process.env.NUXT_BACKEND_URL,
+      STRIPE_PUBLIC_KEY: process.env.NUXT_STRIPE_PUBLIC_KEY,
     },
   },
   ssr: false,
